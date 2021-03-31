@@ -3,6 +3,7 @@ package service;
 import model.Employee;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class BonusService {
 
@@ -15,6 +16,6 @@ public class BonusService {
             amount = BigDecimal.ZERO;
         }
 
-        return amount;
+        return amount.setScale(2, RoundingMode.HALF_UP);
     }
 }

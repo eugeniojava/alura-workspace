@@ -13,7 +13,8 @@ public class BonusService {
                 .multiply(new BigDecimal("0.1"));
 
         if (amount.compareTo(new BigDecimal("1000")) > 0) {
-            amount = BigDecimal.ZERO;
+            throw new IllegalArgumentException("Employee with salary greater " +
+                    "than 10000 can not receive a bonus");
         }
 
         return amount.setScale(2, RoundingMode.HALF_UP);

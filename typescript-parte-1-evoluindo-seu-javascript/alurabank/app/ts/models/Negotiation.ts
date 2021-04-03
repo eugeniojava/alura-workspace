@@ -2,12 +2,12 @@ class Negotiation {
 
   private _date;
   private _quantity;
-  private _amount;
+  private _price;
 
-  constructor(date, quantity, amount) {
+  constructor(date, quantity, price) {
     this._date = date;
     this._quantity = quantity;
-    this._amount = amount;
+    this._price = price;
   }
 
   get date() {
@@ -18,11 +18,11 @@ class Negotiation {
     return this._quantity;
   }
 
-  get amount() {
-    return this._amount;
+  get price() {
+    return this._price;
   }
 
   get volume() {
-    return this._quantity * this._amount;
+    return this._quantity * this._price;
   }
 }

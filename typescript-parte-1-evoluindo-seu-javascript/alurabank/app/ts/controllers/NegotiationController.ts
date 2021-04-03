@@ -1,18 +1,15 @@
 class NegotiationController {
-
-  private _dateInput;
-  private _quantityInput;
-  private _priceInput;
+  private _dateInput: Date;
+  private _quantityInput: number;
+  private _priceInput: number;
 
   constructor() {
-
-    this._dateInput = document.querySelector('#date');
-    this._quantityInput = document.querySelector('#quantity');
-    this._priceInput = document.querySelector('#price');
+    this._dateInput = document.querySelector("#date");
+    this._quantityInput = document.querySelector("#quantity");
+    this._priceInput = document.querySelector("#price");
   }
 
   add(event) {
-
     event.preventDefault();
 
     const negotiation = new Negotiation(
@@ -21,6 +18,6 @@ class NegotiationController {
       this._priceInput.value
     );
 
-    console.log(negotiation);
+    console.log(negotiation.quantity + 20);
   }
 }

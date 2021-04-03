@@ -7,6 +7,6 @@ class NegotiationController {
     add(event) {
         event.preventDefault();
         const negotiation = new Negotiation(this._dateInput.value, this._quantityInput.value, this._priceInput.value);
-        console.log(negotiation);
+        console.log(negotiation.quantity + 20);
     }
 }

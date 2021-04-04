@@ -3,11 +3,13 @@ class NegotiationController {
   private _quantityInput: HTMLInputElement;
   private _priceInput: HTMLInputElement;
   private _negotiations = new Negotiations();
+  private _negotiationsView = new NegotiationsView("#negotiationsView");
 
   constructor() {
     this._dateInput = <HTMLInputElement>document.querySelector("#date");
     this._quantityInput = <HTMLInputElement>document.querySelector("#quantity");
     this._priceInput = <HTMLInputElement>document.querySelector("#price");
+    this._negotiationsView.update;
   }
 
   add(event: Event) {

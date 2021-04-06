@@ -1,7 +1,4 @@
-class NegotiationsView {
-    constructor(selector) {
-        this._element = document.querySelector(selector);
-    }
+class NegotiationsView extends View {
     update(model) {
         this._element.innerHTML = this.template(model);
     }

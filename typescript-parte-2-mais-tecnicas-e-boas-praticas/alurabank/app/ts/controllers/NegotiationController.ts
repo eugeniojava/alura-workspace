@@ -46,6 +46,27 @@ export class NegotiationController {
   private _isBusinessDay(date: Date) {
     return date.getDay() != WeekDay.Saturday && date.getDay() != WeekDay.Sunday;
   }
+
+  importData() {
+    function isOk(response: Response) {
+      if (response.ok) {
+        return response;
+      } else {
+        throw new Error(response.statusText);
+      }
+    }
+
+    fetch("http://localhost:8080/data")
+      .then((response) => isOk(response))
+      .then((response) => response.json())
+      .then((data: any[]) => {
+        data
+          .map((item) => new Negotiation(new Date(), item.times, item.amount))
+          .forEach((negotiation) => this._negotiations.add(negotiation));
+        this._negotiationsView.update(this._negotiations);
+      })
+      .catch((error) => console.log(error));
+  }
 }
 
 enum WeekDay {

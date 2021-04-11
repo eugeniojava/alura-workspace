@@ -43,6 +43,26 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorators
                 _isBusinessDay(date) {
                     return date.getDay() != WeekDay.Saturday && date.getDay() != WeekDay.Sunday;
                 }
+                importData() {
+                    function isOk(response) {
+                        if (response.ok) {
+                            return response;
+                        }
+                        else {
+                            throw new Error(response.statusText);
+                        }
+                    }
+                    fetch("http://localhost:8080/data")
+                        .then((response) => isOk(response))
+                        .then((response) => response.json())
+                        .then((data) => {
+                        data
+                            .map((item) => new index_1.Negotiation(new Date(), item.times, item.amount))
+                            .forEach((negotiation) => this._negotiations.add(negotiation));
+                        this._negotiationsView.update(this._negotiations);
+                    })
+                        .catch((error) => console.log(error));
+                }
             };
             __decorate([
                 index_3.domInject("#date")

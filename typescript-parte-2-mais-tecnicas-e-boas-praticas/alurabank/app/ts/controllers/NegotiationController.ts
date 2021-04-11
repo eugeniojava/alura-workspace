@@ -1,23 +1,25 @@
 import { Negotiation, Negotiations } from "./../models/index";
 import { NegotiationsView, MessageView } from "./../views/index";
-import { logExecutionTime } from "../helpers/decorators/index";
+import { domInject } from "../helpers/decorators/index";
 
 export class NegotiationController {
+  @domInject("#date")
   private _dateInput: JQuery;
+
+  @domInject("#quantity")
   private _quantityInput: JQuery;
+
+  @domInject("#price")
   private _priceInput: JQuery;
+
   private _negotiations = new Negotiations();
   private _negotiationsView = new NegotiationsView("#negotiationsView");
   private _messageView = new MessageView("#messageView");
 
   constructor() {
-    this._dateInput = $("#date");
-    this._quantityInput = $("#quantity");
-    this._priceInput = $("#price");
     this._negotiationsView.update(this._negotiations);
   }
 
-  @logExecutionTime()
   add(event: Event) {
     event.preventDefault();
 

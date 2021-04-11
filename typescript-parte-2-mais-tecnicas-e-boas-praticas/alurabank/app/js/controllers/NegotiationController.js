@@ -26,9 +26,6 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorators
                     this._negotiations = new index_1.Negotiations();
                     this._negotiationsView = new index_2.NegotiationsView("#negotiationsView");
                     this._messageView = new index_2.MessageView("#messageView");
-                    this._dateInput = $("#date");
-                    this._quantityInput = $("#quantity");
-                    this._priceInput = $("#price");
                     this._negotiationsView.update(this._negotiations);
                 }
                 add(event) {
@@ -48,8 +45,14 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorators
                 }
             };
             __decorate([
-                index_3.logExecutionTime()
-            ], NegotiationController.prototype, "add", null);
+                index_3.domInject("#date")
+            ], NegotiationController.prototype, "_dateInput", void 0);
+            __decorate([
+                index_3.domInject("#quantity")
+            ], NegotiationController.prototype, "_quantityInput", void 0);
+            __decorate([
+                index_3.domInject("#price")
+            ], NegotiationController.prototype, "_priceInput", void 0);
             exports_1("NegotiationController", NegotiationController);
             (function (WeekDay) {
                 WeekDay[WeekDay["Sunday"] = 0] = "Sunday";

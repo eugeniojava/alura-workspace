@@ -37,7 +37,8 @@ System.register(["./View"], function (exports_1, context_1) {
         </tbody>
         <tfoot>
         </tfoot>
-      </table>`;
+      </table>
+      `;
                 }
             };
             exports_1("NegotiationsView", NegotiationsView);

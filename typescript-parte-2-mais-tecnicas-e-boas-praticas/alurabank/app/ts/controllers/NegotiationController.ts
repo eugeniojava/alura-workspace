@@ -1,6 +1,6 @@
-import { data } from "jquery";
 import { Negotiation, Negotiations } from "./../models/index";
 import { NegotiationsView, MessageView } from "./../views/index";
+import { logExecutionTime } from "../helpers/decorators/index";
 
 export class NegotiationController {
   private _dateInput: JQuery;
@@ -17,9 +17,8 @@ export class NegotiationController {
     this._negotiationsView.update(this._negotiations);
   }
 
+  @logExecutionTime()
   add(event: Event) {
-    const t1 = performance.now();
-
     event.preventDefault();
 
     let date = new Date(this._dateInput.val().replace(/-/g, ","));
@@ -40,10 +39,6 @@ export class NegotiationController {
 
     this._negotiationsView.update(this._negotiations);
     this._messageView.update("Negotiation successfully added!");
-
-    const t2 = performance.now();
-
-    console.log(`add: ${t2 - t1}`);
   }
 
   private _isBusinessDay(date: Date) {

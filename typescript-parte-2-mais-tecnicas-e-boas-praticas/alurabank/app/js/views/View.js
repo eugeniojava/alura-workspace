@@ -6,7 +6,7 @@ System.register([], function (exports_1, context_1) {
         setters: [],
         execute: function () {
             View = class View {
-                constructor(selector, escape) {
+                constructor(selector, escape = false) {
                     this._element = $(selector);
                     this._escape = escape;
                 }

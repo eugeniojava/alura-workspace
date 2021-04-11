@@ -8,6 +8,8 @@ export abstract class View<T> {
   }
 
   update(model: T): void {
+    const t1 = performance.now();
+
     let template = this.template(model);
 
     if (this._escape) {
@@ -15,6 +17,10 @@ export abstract class View<T> {
     }
 
     this._element.html(template);
+
+    const t2 = performance.now();
+
+    console.log(`update: ${t2 - t1}`);
   }
 
   abstract template(model: T): string;

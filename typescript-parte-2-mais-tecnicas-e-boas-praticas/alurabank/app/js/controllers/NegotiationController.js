@@ -23,6 +23,7 @@ System.register(["./../models/index", "./../views/index"], function (exports_1, 
                     this._negotiationsView.update(this._negotiations);
                 }
                 add(event) {
+                    const t1 = performance.now();
                     event.preventDefault();
                     let date = new Date(this._dateInput.val().replace(/-/g, ","));
                     if (!this._isBusinessDay(date)) {
@@ -32,7 +33,9 @@ System.register(["./../models/index", "./../views/index"], function (exports_1, 
                     const negotiation = new index_1.Negotiation(date, parseInt(this._quantityInput.val()), parseFloat(this._priceInput.val()));
                     this._negotiations.add(negotiation);
                     this._negotiationsView.update(this._negotiations);
-                    this._messageView.update("Negotiation sucessfully added!");
+                    this._messageView.update("Negotiation successfully added!");
+                    const t2 = performance.now();
+                    console.log(`add: ${t2 - t1}`);
                 }
                 _isBusinessDay(date) {
                     return date.getDay() != WeekDay.Saturday && date.getDay() != WeekDay.Sunday;

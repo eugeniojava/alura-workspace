@@ -18,6 +18,8 @@ export class NegotiationController {
   }
 
   add(event: Event) {
+    const t1 = performance.now();
+
     event.preventDefault();
 
     let date = new Date(this._dateInput.val().replace(/-/g, ","));
@@ -37,7 +39,11 @@ export class NegotiationController {
     this._negotiations.add(negotiation);
 
     this._negotiationsView.update(this._negotiations);
-    this._messageView.update("Negotiation sucessfully added!");
+    this._messageView.update("Negotiation successfully added!");
+
+    const t2 = performance.now();
+
+    console.log(`add: ${t2 - t1}`);
   }
 
   private _isBusinessDay(date: Date) {

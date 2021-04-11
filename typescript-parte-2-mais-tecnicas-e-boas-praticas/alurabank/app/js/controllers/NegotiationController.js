@@ -7,7 +7,7 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorators
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, index_3, NegotiationController, WeekDay;
+    var index_1, index_2, index_3, timer, NegotiationController, WeekDay;
     return {
         setters: [
             function (index_1_1) {
@@ -21,6 +21,7 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorators
             }
         ],
         execute: function () {
+            timer = 0;
             NegotiationController = class NegotiationController {
                 constructor() {
                     this._negotiations = new index_1.Negotiations();
@@ -28,8 +29,7 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorators
                     this._messageView = new index_2.MessageView("#messageView");
                     this._negotiationsView.update(this._negotiations);
                 }
-                add(event) {
-                    event.preventDefault();
+                add() {
                     let date = new Date(this._dateInput.val().replace(/-/g, ","));
                     if (!this._isBusinessDay(date)) {
                         this._messageView.update("Negotiations only in business days, please");
@@ -73,6 +73,12 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorators
             __decorate([
                 index_3.domInject("#price")
             ], NegotiationController.prototype, "_priceInput", void 0);
+            __decorate([
+                index_3.throttle()
+            ], NegotiationController.prototype, "add", null);
+            __decorate([
+                index_3.throttle()
+            ], NegotiationController.prototype, "importData", null);
             exports_1("NegotiationController", NegotiationController);
             (function (WeekDay) {
                 WeekDay[WeekDay["Sunday"] = 0] = "Sunday";

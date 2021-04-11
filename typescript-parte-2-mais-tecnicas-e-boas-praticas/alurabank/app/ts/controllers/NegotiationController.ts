@@ -4,7 +4,9 @@ import {
   PartialNegotiation,
 } from "./../models/index";
 import { NegotiationsView, MessageView } from "./../views/index";
-import { domInject } from "../helpers/decorators/index";
+import { domInject, throttle } from "../helpers/decorators/index";
+
+let timer = 0;
 
 export class NegotiationController {
   @domInject("#date")
@@ -24,9 +26,8 @@ export class NegotiationController {
     this._negotiationsView.update(this._negotiations);
   }
 
-  add(event: Event) {
-    event.preventDefault();
-
+  @throttle()
+  add() {
     let date = new Date(this._dateInput.val().replace(/-/g, ","));
 
     if (!this._isBusinessDay(date)) {
@@ -51,6 +52,7 @@ export class NegotiationController {
     return date.getDay() != WeekDay.Saturday && date.getDay() != WeekDay.Sunday;
   }
 
+  @throttle()
   importData() {
     function isOk(response: Response) {
       if (response.ok) {
@@ -59,7 +61,6 @@ export class NegotiationController {
         throw new Error(response.statusText);
       }
     }
-
     fetch("http://localhost:8080/data")
       .then((response) => isOk(response))
       .then((response) => response.json())

@@ -22,15 +22,8 @@ public class Employee {
         this.salary = salary;
     }
 
-    public void readjustSalary(BigDecimal increase) {
-        BigDecimal readjustmentPercentage = increase.divide(salary,
-                RoundingMode.HALF_UP);
-
-        if (readjustmentPercentage.compareTo(new BigDecimal("0.4")) > 0) {
-            throw new ValidationException("Readjustment cannot exceed 40% of " +
-                    "the salary");
-        }
-        this.salary = this.salary.add(increase);
+    public void updateSalary(BigDecimal newSalary) {
+        this.salary = newSalary;
         this.lastReadjustmentDate = LocalDate.now();
     }
 

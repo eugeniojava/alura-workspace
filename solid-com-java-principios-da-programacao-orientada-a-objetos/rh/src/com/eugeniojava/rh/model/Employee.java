@@ -66,4 +66,8 @@ public class Employee {
     public void setLastReadjustmentDate(LocalDate lastReadjustmentDate) {
         this.lastReadjustmentDate = lastReadjustmentDate;
     }
+
+    public void promote(Role newRole) {
+        role = newRole;
+    }
 }

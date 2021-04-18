@@ -1,4 +1,4 @@
-package com.eugeniojava.rh.service;
+package com.eugeniojava.rh.service.readjustment;
 
 import com.eugeniojava.rh.model.Employee;
 

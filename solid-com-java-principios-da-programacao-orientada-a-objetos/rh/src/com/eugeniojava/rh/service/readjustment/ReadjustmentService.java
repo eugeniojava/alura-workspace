@@ -1,12 +1,8 @@
-package com.eugeniojava.rh.service;
+package com.eugeniojava.rh.service.readjustment;
 
-import com.eugeniojava.rh.ValidationException;
 import com.eugeniojava.rh.model.Employee;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class ReadjustmentService {

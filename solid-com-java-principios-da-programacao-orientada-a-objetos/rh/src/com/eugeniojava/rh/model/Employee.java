@@ -23,8 +23,8 @@ public class Employee {
     }
 
     public void updateSalary(BigDecimal newSalary) {
-        this.salary = newSalary;
-        this.lastReadjustmentDate = LocalDate.now();
+        salary = newSalary;
+        lastReadjustmentDate = LocalDate.now();
     }
 
     public String getName() {

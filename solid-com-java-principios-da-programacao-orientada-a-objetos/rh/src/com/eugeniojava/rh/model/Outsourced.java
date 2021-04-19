@@ -3,19 +3,15 @@ package com.eugeniojava.rh.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Employee {
+public class Outsourced {
 
     private PersonalData personalData;
-    private LocalDate lastReadjustmentDate;
+    private String company;
 
-    public Employee(String name, String document, Role role,
-                    BigDecimal salary) {
+    public Outsourced(String name, String document, Role role,
+                      BigDecimal salary, String company) {
         this.personalData = new PersonalData(name, document, role, salary);
-    }
-
-    public void updateSalary(BigDecimal newSalary) {
-        this.personalData.setSalary(newSalary);
-        this.lastReadjustmentDate = LocalDate.now();
+        this.company = company;
     }
 
     public void promote(Role newRole) {
@@ -38,7 +34,11 @@ public class Employee {
         return personalData.getSalary();
     }
 
-    public LocalDate getLastReadjustmentDate() {
-        return lastReadjustmentDate;
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 }

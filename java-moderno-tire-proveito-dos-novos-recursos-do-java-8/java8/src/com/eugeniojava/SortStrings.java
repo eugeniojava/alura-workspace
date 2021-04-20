@@ -14,25 +14,20 @@ public class SortStrings {
         words.add("Casa do Código");
         words.add("Caelum");
 
-        Comparator<String> comparator = new SizeComparator();
-//        Collections.sort(words, comparator);
-        words.sort(comparator);
+        words.sort((s1, s2) -> {
+            if (s1.length() < s2.length()) return -1;
+            if (s1.length() > s2.length()) return 1;
+            return 0;
+        });
+
+        words.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
+
         System.out.println(words);
 
-//        for (String w : words) {
-//            System.out.println(w);
-//        }
-
-        Consumer<String> consumer = new PrintInline();
+        Consumer<String> consumer = s -> System.out.println(s);
         words.forEach(consumer);
-    }
-}
 
-class PrintInline implements Consumer<String> {
-
-    @Override
-    public void accept(String s) {
-        System.out.println(s);
+        words.forEach(s -> System.out.println(s));
     }
 }
 

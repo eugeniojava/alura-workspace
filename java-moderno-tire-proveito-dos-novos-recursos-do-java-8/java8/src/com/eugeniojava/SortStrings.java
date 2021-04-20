@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class SortStrings {
 
@@ -20,14 +21,23 @@ public class SortStrings {
             return 0;
         });
 
-        words.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
+//        words.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
+
+        words.sort(Comparator.comparing(s -> s.length()));
+        words.sort(Comparator.comparing(String::length));
+
+        Function<String, Integer> function = String::length;
+        Function<String, Integer> function2 = s -> s.length();
+
+        Comparator<String> comparator = Comparator.comparing(function);
+        words.sort(comparator);
 
         System.out.println(words);
 
-        Consumer<String> consumer = s -> System.out.println(s);
+        Consumer<String> consumer = System.out::println;
         words.forEach(consumer);
 
-        words.forEach(s -> System.out.println(s));
+        words.forEach(System.out::println);
     }
 }
 

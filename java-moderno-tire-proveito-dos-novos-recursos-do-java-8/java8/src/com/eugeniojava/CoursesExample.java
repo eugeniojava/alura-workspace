@@ -3,9 +3,11 @@ package com.eugeniojava;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.OptionalDouble;
+import java.util.stream.Collectors;
 
 class Course {
-    
+
     private String name;
     private int students;
 
@@ -35,11 +37,25 @@ public class CoursesExample {
 
         courses.sort(Comparator.comparingInt(Course::getStudents));
 
-        int sum = courses.stream()
+        OptionalDouble average = courses.stream()
                 .filter(c -> c.getStudents() >= 100)
                 .mapToInt(Course::getStudents)
-                .sum();
+                .average();
 
-        System.out.println(sum);
+//        System.out.println(average.getAsDouble());
+
+//        courses.stream()
+//                .filter(c -> c.getStudents() >= 100)
+//                .findAny()
+//                .ifPresent(c -> System.out.println(c.getName()));
+
+        courses.parallelStream()
+                .filter(c -> c.getStudents() >= 100)
+                .collect(Collectors.toMap(
+                        c -> c.getName(),
+                        c -> c.getStudents()
+                ))
+                .forEach((name, students) -> System.out.println(name + " has "
+                        + students + " students"));
     }
 }

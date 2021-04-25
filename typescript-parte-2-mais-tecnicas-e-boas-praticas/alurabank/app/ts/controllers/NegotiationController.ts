@@ -6,6 +6,7 @@ import {
 import { NegotiationsView, MessageView } from "./../views/index";
 import { domInject, throttle } from "../helpers/decorators/index";
 import { NegotiationService } from "../services/index";
+import { print } from "../helpers/index";
 
 export class NegotiationController {
   @domInject("#date")
@@ -43,6 +44,8 @@ export class NegotiationController {
     );
 
     this._negotiations.add(negotiation);
+
+    print(negotiation, this._negotiations);
 
     this._negotiationsView.update(this._negotiations);
     this._messageView.update("Negotiation successfully added!");

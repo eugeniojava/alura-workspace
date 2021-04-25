@@ -10,4 +10,9 @@ export class Negotiations {
   toArray(): Negotiation[] {
     return ([] as Negotiation[]).concat(this._negotiations);
   }
+
+  toString(): void {
+    console.log("Printing");
+    console.log(JSON.stringify(this._negotiations));
+  }
 }

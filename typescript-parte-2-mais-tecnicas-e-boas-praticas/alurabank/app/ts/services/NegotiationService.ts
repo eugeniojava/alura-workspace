@@ -6,9 +6,8 @@ export class NegotiationService {
       .then((response) => handler(response))
       .then((response) => response.json())
       .then((data: PartialNegotiation[]) =>
-        data.map(
-          (item) => new Negotiation(new Date(), item.times, item.amount)
-        )
+        data.map((item) => new Negotiation(new Date(), item.times, item.amount))
+      )
       .catch((error) => console.log(error));
   }
 }

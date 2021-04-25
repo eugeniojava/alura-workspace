@@ -1,4 +1,4 @@
-System.register(["./../models/index", "./../views/index", "../helpers/decorators/index"], function (exports_1, context_1) {
+System.register(["./../models/index", "./../views/index", "../helpers/decorators/index", "../services/index", "../helpers/index"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7,7 +7,7 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorators
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, index_3, timer, NegotiationController, WeekDay;
+    var index_1, index_2, index_3, index_4, index_5, NegotiationController, WeekDay;
     return {
         setters: [
             function (index_1_1) {
@@ -18,15 +18,21 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorators
             },
             function (index_3_1) {
                 index_3 = index_3_1;
+            },
+            function (index_4_1) {
+                index_4 = index_4_1;
+            },
+            function (index_5_1) {
+                index_5 = index_5_1;
             }
         ],
         execute: function () {
-            timer = 0;
             NegotiationController = class NegotiationController {
                 constructor() {
                     this._negotiations = new index_1.Negotiations();
                     this._negotiationsView = new index_2.NegotiationsView("#negotiationsView");
                     this._messageView = new index_2.MessageView("#messageView");
+                    this._negotiationService = new index_4.NegotiationService();
                     this._negotiationsView.update(this._negotiations);
                 }
                 add() {
@@ -37,6 +43,7 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorators
                     }
                     const negotiation = new index_1.Negotiation(date, parseInt(this._quantityInput.val()), parseFloat(this._priceInput.val()));
                     this._negotiations.add(negotiation);
+                    index_5.print(negotiation, this._negotiations);
                     this._negotiationsView.update(this._negotiations);
                     this._messageView.update("Negotiation successfully added!");
                 }
@@ -44,24 +51,19 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorators
                     return date.getDay() != WeekDay.Saturday && date.getDay() != WeekDay.Sunday;
                 }
                 importData() {
-                    function isOk(response) {
+                    this._negotiationService
+                        .obtainNegotiations((response) => {
                         if (response.ok) {
                             return response;
                         }
                         else {
                             throw new Error(response.statusText);
                         }
-                    }
-                    fetch("http://localhost:8080/data")
-                        .then((response) => isOk(response))
-                        .then((response) => response.json())
-                        .then((data) => {
-                        data
-                            .map((item) => new index_1.Negotiation(new Date(), item.times, item.amount))
-                            .forEach((negotiation) => this._negotiations.add(negotiation));
-                        this._negotiationsView.update(this._negotiations);
                     })
-                        .catch((error) => console.log(error));
+                        .then((negotiations) => {
+                        negotiations.forEach((negotiation) => this._negotiations.add(negotiation));
+                        this._negotiationsView.update(this._negotiations);
+                    });
                 }
             };
             __decorate([

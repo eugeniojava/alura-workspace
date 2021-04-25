@@ -1,17 +1,12 @@
-System.register(["./Printable"], function (exports_1, context_1) {
+System.register([], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Printable_1, Negotiation;
+    var Negotiation;
     return {
-        setters: [
-            function (Printable_1_1) {
-                Printable_1 = Printable_1_1;
-            }
-        ],
+        setters: [],
         execute: function () {
-            Negotiation = class Negotiation extends Printable_1.Printable {
+            Negotiation = class Negotiation {
                 constructor(date, quantity, price) {
-                    super();
                     this.date = date;
                     this.quantity = quantity;
                     this.price = price;

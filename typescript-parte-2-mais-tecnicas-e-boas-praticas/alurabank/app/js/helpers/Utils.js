@@ -1,8 +1,8 @@
 System.register([], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    function print(...negotiations) {
-        negotiations.forEach((object) => object.toString());
+    function print(...objects) {
+        objects.forEach((object) => object.toString());
     }
     exports_1("print", print);
     return {

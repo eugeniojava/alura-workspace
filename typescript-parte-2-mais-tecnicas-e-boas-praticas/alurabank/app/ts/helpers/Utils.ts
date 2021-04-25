@@ -1,5 +1,5 @@
-import { Printable } from "../models/Printable";
+import { Printable } from "../models/index";
 
-export function print(...negotiations: Printable[]) {
-  negotiations.forEach((object) => object.toString());
+export function print(...objects: Printable[]) {
+  objects.forEach((object) => object.toString());
 }

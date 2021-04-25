@@ -1,7 +1,6 @@
-import { Printable } from "./Printable";
-import { Comparable } from "./Comparable";
+import { MyObject } from "./MyObject";
 
-export class Negotiation implements Printable, Comparable<Negotiation> {
+export class Negotiation implements MyObject<Negotiation> {
   constructor(
     readonly date: Date,
     readonly quantity: number,

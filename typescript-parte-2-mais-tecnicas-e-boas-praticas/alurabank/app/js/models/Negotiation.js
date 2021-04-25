@@ -21,6 +21,11 @@ System.register([], function (exports_1, context_1) {
       Price: ${this.price}
       Volume: ${this.volume}`);
                 }
+                isEqual(negotiation) {
+                    return (this.date.getDate() == negotiation.date.getDate() &&
+                        this.date.getMonth() == negotiation.date.getMonth() &&
+                        this.date.getFullYear() == negotiation.date.getFullYear());
+                }
             };
             exports_1("Negotiation", Negotiation);
         }

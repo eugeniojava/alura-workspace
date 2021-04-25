@@ -65,10 +65,17 @@ export class NegotiationController {
           throw new Error(response.statusText);
         }
       })
-      .then((negotiations) => {
-        negotiations.forEach((negotiation) =>
-          this._negotiations.add(negotiation)
-        );
+      .then((negotiationsToImport) => {
+        const negotiationsAlreadyImported = this._negotiations.toArray();
+
+        negotiationsToImport
+          .filter(
+            (negotiation) =>
+              !negotiationsAlreadyImported.some((alreadyImported) =>
+                negotiation.isEqual(alreadyImported)
+              )
+          )
+          .forEach((negotiation) => this._negotiations.add(negotiation));
 
         this._negotiationsView.update(this._negotiations);
       });

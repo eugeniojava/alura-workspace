@@ -19,6 +19,10 @@ System.register([], function (exports_1, context_1) {
                     console.log("Printing");
                     console.log(JSON.stringify(this._negotiations));
                 }
+                isEqual(negotiations) {
+                    return (JSON.stringify(this._negotiations) ==
+                        JSON.stringify(negotiations.toArray()));
+                }
             };
             exports_1("Negotiations", Negotiations);
         }

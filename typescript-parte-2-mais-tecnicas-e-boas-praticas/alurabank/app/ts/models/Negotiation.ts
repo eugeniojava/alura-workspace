@@ -1,6 +1,7 @@
 import { Printable } from "./Printable";
+import { Comparable } from "./Comparable";
 
-export class Negotiation implements Printable {
+export class Negotiation implements Printable, Comparable<Negotiation> {
   constructor(
     readonly date: Date,
     readonly quantity: number,
@@ -18,6 +19,14 @@ export class Negotiation implements Printable {
       Quantity: ${this.quantity}
       Price: ${this.price}
       Volume: ${this.volume}`
+    );
+  }
+
+  isEqual(negotiation: Negotiation): boolean {
+    return (
+      this.date.getDate() == negotiation.date.getDate() &&
+      this.date.getMonth() == negotiation.date.getMonth() &&
+      this.date.getFullYear() == negotiation.date.getFullYear()
     );
   }
 }

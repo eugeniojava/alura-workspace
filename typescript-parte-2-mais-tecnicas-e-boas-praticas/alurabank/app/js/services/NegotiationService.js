@@ -11,7 +11,7 @@ System.register(["../models/index"], function (exports_1, context_1) {
         execute: function () {
             NegotiationService = class NegotiationService {
                 obtainNegotiations(handler) {
-                    return fetch("http://localhost:8080/data")
+                    return fetch("http://localhost:8080/datas")
                         .then((response) => handler(response))
                         .then((response) => response.json())
                         .then((data) => data.map((item) => new index_1.Negotiation(new Date(), item.times, item.amount)))

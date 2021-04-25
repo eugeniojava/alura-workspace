@@ -66,6 +66,9 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorators
                             .filter((negotiation) => !negotiationsAlreadyImported.some((alreadyImported) => negotiation.isEqual(alreadyImported)))
                             .forEach((negotiation) => this._negotiations.add(negotiation));
                         this._negotiationsView.update(this._negotiations);
+                    })
+                        .catch((error) => {
+                        this._messageView.update(error.message);
                     });
                 }
             };

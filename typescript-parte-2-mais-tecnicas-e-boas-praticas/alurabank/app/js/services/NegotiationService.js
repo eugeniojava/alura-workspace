@@ -15,7 +15,10 @@ System.register(["../models/index"], function (exports_1, context_1) {
                         .then((response) => handler(response))
                         .then((response) => response.json())
                         .then((data) => data.map((item) => new index_1.Negotiation(new Date(), item.times, item.amount)))
-                        .catch((error) => console.log(error));
+                        .catch((error) => {
+                        console.log(error);
+                        throw new Error("Negotiations could not be imported");
+                    });
                 }
             };
             exports_1("NegotiationService", NegotiationService);

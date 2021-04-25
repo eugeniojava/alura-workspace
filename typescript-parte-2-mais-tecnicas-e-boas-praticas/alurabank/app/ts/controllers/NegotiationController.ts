@@ -78,6 +78,9 @@ export class NegotiationController {
           .forEach((negotiation) => this._negotiations.add(negotiation));
 
         this._negotiationsView.update(this._negotiations);
+      })
+      .catch((error) => {
+        this._messageView.update(error.message);
       });
   }
 }

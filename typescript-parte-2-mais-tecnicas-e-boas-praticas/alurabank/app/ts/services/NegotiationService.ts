@@ -8,7 +8,10 @@ export class NegotiationService {
       .then((data: PartialNegotiation[]) =>
         data.map((item) => new Negotiation(new Date(), item.times, item.amount))
       )
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        throw new Error("Negotiations could not be imported");
+      });
   }
 }
 

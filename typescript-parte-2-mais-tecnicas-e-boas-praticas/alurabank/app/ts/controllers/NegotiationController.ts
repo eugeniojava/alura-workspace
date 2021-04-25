@@ -54,20 +54,21 @@ export class NegotiationController {
 
   @throttle()
   importData() {
-    function isOk(response: Response) {
-      if (response.ok) {
-        return response;
-      } else {
-        throw new Error(response.statusText);
-      }
-    }
-    this._negotiationService.obtainNegotiations(isOk).then((negotiations) => {
-      negotiations.forEach((negotiation) =>
-        this._negotiations.add(negotiation)
-      );
+    this._negotiationService
+      .obtainNegotiations((response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          throw new Error(response.statusText);
+        }
+      })
+      .then((negotiations) => {
+        negotiations.forEach((negotiation) =>
+          this._negotiations.add(negotiation)
+        );
 
-      this._negotiationsView.update(this._negotiations);
-    });
+        this._negotiationsView.update(this._negotiations);
+      });
   }
 }
 

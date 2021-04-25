@@ -45,7 +45,7 @@ export class NegotiationController {
 
     this._negotiations.add(negotiation);
 
-    print(negotiation, this._negotiations);
+    print(negotiation, this._negotiations, date);
 
     this._negotiationsView.update(this._negotiations);
     this._messageView.update("Negotiation successfully added!");

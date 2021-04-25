@@ -43,7 +43,7 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorators
                     }
                     const negotiation = new index_1.Negotiation(date, parseInt(this._quantityInput.val()), parseFloat(this._priceInput.val()));
                     this._negotiations.add(negotiation);
-                    index_5.print(negotiation, this._negotiations);
+                    index_5.print(negotiation, this._negotiations, date);
                     this._negotiationsView.update(this._negotiations);
                     this._messageView.update("Negotiation successfully added!");
                 }

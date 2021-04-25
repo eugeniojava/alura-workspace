@@ -1,6 +1,7 @@
 import { Negotiation } from "./Negotiation";
+import { Printable } from "./Printable";
 
-export class Negotiations {
+export class Negotiations extends Printable {
   private _negotiations: Negotiation[] = [];
 
   add(negotiation: Negotiation): void {

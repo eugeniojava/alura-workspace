@@ -15,6 +15,13 @@ plugins.push(
   })
 );
 
+plugins.push(
+  new webpack.optimize.CommonsChunkPlugin({
+    name: "vendor",
+    filename: "vendor.bundle.js",
+  })
+);
+
 if (process.env.NODE_ENV == "production") {
   plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
   plugins.push(new babiliWebpackPlugin());
@@ -32,7 +39,10 @@ if (process.env.NODE_ENV == "production") {
 }
 
 module.exports = {
-  entry: "./app-src/app.js",
+  entry: {
+    app: "./app-src/app.js",
+    vendor: ["jquery", "bootstrap", "reflect-metadata"],
+  },
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),

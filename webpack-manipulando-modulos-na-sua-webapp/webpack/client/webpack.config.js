@@ -1,13 +1,25 @@
 const path = require("path");
-const babiliPlugin = require("babili-webpack-plugin");
-const extractTextPlugin = require("extract-text-webpack-plugin");
+const babiliWebpackPlugin = require("babili-webpack-plugin");
+const extractTextWebpackPlugin = require("extract-text-webpack-plugin");
+const optimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 let plugins = [];
 
-plugins.push(new extractTextPlugin("styles.css"));
+plugins.push(new extractTextWebpackPlugin("styles.css"));
 
-if ((process.env.NODE_ENV = "production")) {
-  plugins.push(new babiliPlugin());
+if (process.env.NODE_ENV == "production") {
+  plugins.push(new babiliWebpackPlugin());
+  plugins.push(
+    new optimizeCssAssetsPlugin({
+      cssProcessor: require("cssnano"),
+      cssProcessorOptions: {
+        discardComments: {
+          removeAll: true,
+        },
+      },
+      canPrint: true,
+    })
+  );
 }
 
 module.exports = {
@@ -28,7 +40,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: extractTextPlugin.extract({
+        use: extractTextWebpackPlugin.extract({
           fallback: "style-loader",
           use: "css-loader",
         }),

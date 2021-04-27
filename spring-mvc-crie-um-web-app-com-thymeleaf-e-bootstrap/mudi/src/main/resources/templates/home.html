@@ -17,19 +17,34 @@
         <div class="card-header" th:text="${order.productName}">Product
             name
         </div>
-        <div>Price: <span th:text="${order.negotiatedValue}">200,99</span></div>
-        <div>Delivery date:
-            <span th:text="${order.deliveryDate}">10/02/2020</span></div>
-        <div>Product</div>
-        <div><input class="form-control" th:value="${order.productUrl}"
-                    value="product URL"></div>
-        <div>Description</div>
-        <div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-sm-8 mb-3">
+                    <div class="row">
+                        <div class="col-md-5">Price: <span
+                                th:text="${order.negotiatedValue}">200,99</span>
+                        </div>
+                        <div class="col-md-7">Delivery date:
+                            <span th:text="${order.deliveryDate}">10/02/2020</span>
+                        </div>
+                    </div>
+                    <div>Product</div>
+                    <div><input class="form-control"
+                                th:value="${order.productUrl}"
+                                value="product URL"></div>
+                    <div>Description</div>
+                    <div>
             <textarea class="form-control"
                       th:text="${order.productDescription}">Product description</textarea>
-        </div>
-        <div>
-            <img src="" th:src="${order.imageUrl}">
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div>
+                        <img class="img-thumbnail" src=""
+                             th:src="${order.imageUrl}">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

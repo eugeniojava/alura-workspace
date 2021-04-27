@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, user-scalable=no, initial-scale=1.0,
@@ -9,18 +9,20 @@
     <title>Document</title>
 </head>
 <body>
-<div>
-    <div>Product name</div>
-    <div>Price: <span>200,99</span></div>
-    <div>Delivery date: <span>10/02/2020</span></div>
+<div th:each="order: ${orders}">
+    <div th:text="${order.productName}">Product name</div>
+    <div>Price: <span th:text="${order.negotiatedValue}">200,99</span></div>
+    <div>Delivery date:
+        <span th:text="${order.deliveryDate}">10/02/2020</span></div>
     <div>Product</div>
-    <div>Product URL</div>
+    <div><input th:value="${order.productUrl}" value="product URL"></div>
     <div>Description</div>
     <div>
-        <textarea>Product description</textarea>
+        <textarea
+                th:text="${order.productDescription}">Product description</textarea>
     </div>
     <div>
-        <img src="">
+        <img th:src="${order.imageUrl}" src="">
     </div>
 </div>
 </body>

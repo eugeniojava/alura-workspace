@@ -15,3 +15,4 @@ Workspace for Alura courses
 ## In progress
 
 - Angular parte 1: Fundamentos
+- Spring MVC: Crie um web app com Thymeleaf e Bootstrap

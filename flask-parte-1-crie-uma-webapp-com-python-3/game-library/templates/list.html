@@ -10,24 +10,24 @@
 <body>
 <div class="container">
     <div class="page-header">
-        <h1>Game Library</h1>
+        <h1>{{ title }}</h1>
     </div>
     <table class="table table-striped table-responsive table-bordered">
         <thead class="thead-default">
         <tr>
             <th>Name</th>
+            <th>Category</th>
+            <th>Console</th>
         </tr>
         </thead>
         <tbody>
+        {% for game in games %}
         <tr>
-            <td>League of Legends</td>
+            <td>{{ game.name }}</td>
+            <td>{{ game.category }}</td>
+            <td>{{ game.console }}</td>
         </tr>
-        <tr>
-            <td>Counter-Strike: Global Offensive</td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
+        {% endfor %}
         </tbody>
     </table>
 </div>

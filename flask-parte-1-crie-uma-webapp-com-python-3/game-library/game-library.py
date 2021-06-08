@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
@@ -32,7 +32,7 @@ def create():
     console = request.form['console']
     game = Game(name, category, console)
     listOfGames.append(game)
-    return render_template('list.html', title='Game Library', games=listOfGames)
+    return redirect('/')
 
 
 app.run(host='0.0.0.0', port=8080, debug=True)
